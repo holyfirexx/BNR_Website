@@ -1,0 +1,178 @@
+.c-form {
+  padding: 1rem;
+
+  &__row {
+    padding: 1rem;
+  }
+
+}
+
+.c-cta {
+  &--alert {
+    color: $input-error-color;
+
+    &:hover, &:focus {
+      color: $input-error-color;
+    }
+
+    &:active, &:active:hover, &:active:focus {
+      transition-timing-function: ease-in;
+      transition-duration: 150ms;
+    }
+  }
+}
+
+.background{
+    background-color: rgba(173,216,250,.1);
+    border-radius: 15px;
+    border-style:none;
+    border-color:none;
+    border-width:0;
+}
+
+.profile-action-block{
+    //background-color: black;
+    border-left: thin solid #cacaca;
+    border-right: thin solid #cacaca;
+    border-top: thick solid #cacaca;
+    border-bottom: thick solid #cacaca;
+    padding: 1em;
+}
+
+.profile-breadcrumb
+{
+    padding-top: 6px;
+    padding-right: 4px;
+    padding-bottom: 6px;
+    padding-left: 4px;
+}
+.profile-bread-icon
+{
+    margin-left:20px;
+    font-size: 280%; 
+    color: white; 
+    font-weight: 600;
+}
+.button.profile-breadcrumb
+{
+    margin:0;
+}
+.button.complete.profile-breadcrumb{
+    opacity: 1!important;
+    background-color: #C4DDED;
+    /*&:hover{background-color: #95b9d8;}*/
+}
+.button.skipped.profile-breadcrumb{
+    opacity: 1!important;
+    background-color: #C4DDED;
+    /*&:hover{background-color: #95b9d8;}*/
+}
+.button.profile-breadcrumb.active
+{
+    padding-top: 6px;
+    padding-right: 4px;
+    padding-bottom: 6px;
+    padding-left: 4px;
+    background-color: #1779ba;
+    cursor:default;
+}
+.button.disabled.profile-breadcrumb{
+    opacity: 1!important;
+    background-color: #C4DDED;
+}
+
+.page-margins{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.title-img-text-wrap{
+    float:left;
+    margin-right: .5em;
+}
+
+.page-header{
+    font-size: 1.75rem;
+}
+
+.section-header{
+    font-size: 1.675rem;
+}
+
+.label-font{
+    font-size: 1.125em;
+}
+
+.fineprint{
+    font-size: 0.675em;
+}
+
+.small-top-margin{
+    margin-top: 1em;
+}
+
+.medium-top-margin{
+    margin-top: 2em;
+}
+
+.large-top-margin{
+    margin-top: 3em;
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
+
+.not-allowed {
+   cursor: not-allowed;
+   text-decoration: none;
+}
+
+.align-image-middle {
+    vertical-align: middle;
+}
+
+.complete-color {
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.warning-color {
+    color: orange;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.fix-line-height {
+    line-height: 2.5em;
+}
+.completedInput{
+    box-shadow: none;
+    border-right: none;
+    padding: 0 .5em;
+}
+.completedIcon{
+    border-left: none;
+}
+.verticalAlign{
+    vertical-align:sub;
+}
+.disabledText{
+    color:$light-gray;
+    cursor:wait;
+}
+
+.action-bar-bg{
+    background-color: $topbar-background;
+}
+
+input[type='checkbox'].checkbox-left{
+    float: left;
+}
+
+label span.checkbox-text-right{
+    display: block;
+    margin-bottom: 5px;
+    margin-left:18px;
+    font-weight: bolder;
+}

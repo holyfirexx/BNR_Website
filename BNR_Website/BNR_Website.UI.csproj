@@ -172,29 +172,46 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aurelia_project\environments\dev.js" />
+    <Content Include="aurelia_project\environments\prod.js" />
+    <Content Include="aurelia_project\environments\stage.js" />
+    <Content Include="aurelia_project\generators\attribute.js" />
+    <Content Include="aurelia_project\generators\binding-behavior.js" />
+    <Content Include="aurelia_project\generators\element.js" />
+    <Content Include="aurelia_project\generators\generator.js" />
+    <Content Include="aurelia_project\generators\task.js" />
+    <Content Include="aurelia_project\generators\value-converter.js" />
+    <Content Include="aurelia_project\tasks\build.js" />
+    <Content Include="aurelia_project\tasks\process-css.js" />
+    <Content Include="aurelia_project\tasks\process-markup.js" />
+    <Content Include="aurelia_project\tasks\run.js" />
+    <Content Include="aurelia_project\tasks\transpile.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="index.html" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="aurelia_project\aurelia.json" />
+    <Content Include="aurelia_project\generators\attribute.json" />
+    <Content Include="aurelia_project\generators\binding-behavior.json" />
+    <Content Include="aurelia_project\generators\element.json" />
+    <Content Include="aurelia_project\generators\generator.json" />
+    <Content Include="aurelia_project\generators\task.json" />
+    <Content Include="aurelia_project\generators\value-converter.json" />
+    <Content Include="aurelia_project\tasks\build.json" />
+    <Content Include="aurelia_project\tasks\run.json" />
+    <Content Include="package.json" />
+    <Content Include="src\app.html" />
+    <Content Include="src\app.js" />
+    <Content Include="src\environment.js" />
+    <Content Include="src\main.js" />
+    <Content Include="src\resources\index.js" />
+    <Content Include="styles\app.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -206,20 +223,21 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="scss\app.scss" />
+    <Content Include="scss\app\_custom.scss" />
+    <Content Include="scss\app\_dialogs.scss" />
+    <Content Include="scss\app\_notifications.scss" />
+    <Content Include="scss\app\_settings.scss" />
+    <Content Include="scss\zurb\_settings.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="src\resources\attributes\" />
+    <Folder Include="src\resources\binding-behaviors\" />
+    <Folder Include="src\resources\elements\" />
+    <Folder Include="src\resources\value-converters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -227,7 +245,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BNR_Website.Commons\BNR_Website.Commons.csproj">
@@ -257,7 +274,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4605</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4605/</IISUrl>
+          <IISUrl>http://localhost:4606/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
