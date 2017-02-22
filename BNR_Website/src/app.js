@@ -3,7 +3,7 @@ import foundation from 'foundation-sites';
 
 export class App {
   constructor() {
-    this.message = 'Hello World!';
+    this.clanName = 'Brotherhood of the Nefariously Righteous!';
   }
 
   attached() {

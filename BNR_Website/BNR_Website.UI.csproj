@@ -208,6 +208,11 @@
     <Content Include="package.json" />
     <Content Include="src\app.html" />
     <Content Include="src\app.js" />
+    <Content Include="src\components\index.js" />
+    <Content Include="src\components\site-footer\site-footer.html" />
+    <Content Include="src\components\site-footer\site-footer.js" />
+    <Content Include="src\components\nav-bar\nav-bar.html" />
+    <Content Include="src\components\nav-bar\nav-bar.js" />
     <Content Include="src\environment.js" />
     <Content Include="src\main.js" />
     <Content Include="src\resources\index.js" />
@@ -238,6 +243,7 @@
     <Folder Include="src\resources\binding-behaviors\" />
     <Folder Include="src\resources\elements\" />
     <Folder Include="src\resources\value-converters\" />
+    <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
