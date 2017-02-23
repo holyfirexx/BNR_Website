@@ -248,7 +248,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="log4net.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
