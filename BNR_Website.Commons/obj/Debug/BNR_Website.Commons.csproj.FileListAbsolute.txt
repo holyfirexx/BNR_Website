@@ -3,3 +3,8 @@ C:\Users\Travis Higgs\Documents\Visual Studio 2015\Projects\BNR_Website\BNR_Webs
 C:\Users\Travis Higgs\Documents\Visual Studio 2015\Projects\BNR_Website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.csprojResolveAssemblyReference.cache
 C:\Users\Travis Higgs\Documents\Visual Studio 2015\Projects\BNR_Website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.dll
 C:\Users\Travis Higgs\Documents\Visual Studio 2015\Projects\BNR_Website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.pdb
+Z:\devl\workspaces\bnr_website\BNR_Website.Commons\bin\Debug\BNR_Website.Commons.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.Commons\bin\Debug\BNR_Website.Commons.pdb
+Z:\devl\workspaces\bnr_website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.csprojResolveAssemblyReference.cache
+Z:\devl\workspaces\bnr_website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.Commons\obj\Debug\BNR_Website.Commons.pdb

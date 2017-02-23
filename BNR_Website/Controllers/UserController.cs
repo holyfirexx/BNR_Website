@@ -8,17 +8,32 @@ using System.Web;
 using System.Web.Mvc;
 using BNR_Website.DAL.Models;
 using BNR_Website.DAL.Repositories;
+using BNR_Website.DAL.Repositories.Interfaces;
 
 namespace BNR_Website.Controllers
 {
     public class UserController : Controller
     {
-        private BNRContext db = new BNRContext();
+        private IUnitOfWork _unitOfWork = null;
+
+        public UserController()
+        {
+            if(_unitOfWork == null)
+            {
+                _unitOfWork = new UnitOfWork(new BNRContext());
+            }
+        }
+        public UserController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+
 
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(_unitOfWork.UserRepository.GetAll());
         }
 
         // GET: User/Details/5
@@ -28,7 +43,7 @@ namespace BNR_Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _unitOfWork.UserRepository.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -51,8 +66,8 @@ namespace BNR_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                _unitOfWork.UserRepository.Insert(user);
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +81,7 @@ namespace BNR_Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _unitOfWork.UserRepository.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -83,8 +98,8 @@ namespace BNR_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -97,7 +112,7 @@ namespace BNR_Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _unitOfWork.UserRepository.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -110,9 +125,9 @@ namespace BNR_Website.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            User user = _unitOfWork.UserRepository.Get(id);
+            _unitOfWork.UserRepository.Delete(user);
+            _unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +135,7 @@ namespace BNR_Website.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
