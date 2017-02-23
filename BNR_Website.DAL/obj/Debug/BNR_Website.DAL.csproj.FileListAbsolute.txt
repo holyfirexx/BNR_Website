@@ -8,3 +8,15 @@ C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Webs
 C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website.DAL\bin\Debug\EntityFramework.xml
 C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website.DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website.DAL\obj\Debug\BNR_Website.DAL.csprojResolveAssemblyReference.cache
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\BNR_Website.DAL.dll.config
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\BNR_Website.DAL.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\BNR_Website.DAL.pdb
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\EntityFramework.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\EntityFramework.SqlServer.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\log4net.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\EntityFramework.xml
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\EntityFramework.SqlServer.xml
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\bin\Debug\log4net.xml
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\obj\Debug\BNR_Website.DAL.csprojResolveAssemblyReference.cache
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\obj\Debug\BNR_Website.DAL.dll
+Z:\devl\workspaces\bnr_website\BNR_Website.DAL\obj\Debug\BNR_Website.DAL.pdb
