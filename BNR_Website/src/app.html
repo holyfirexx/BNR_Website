@@ -1,13 +1,8 @@
 <template>
-    <nav-bar></nav-bar>
+    <nav-bar router.bind="router"></nav-bar>
   <h1>${clanName}</h1>
-    <div class="row">
-        <div class="small-12 large-6 columns">
-            Hello
-        </div>
-        <div class="small-12 large-6 columns">
-            Hello
-        </div>
+    <div>
+        <router-view></router-view>
     </div>
     <site-footer></site-footer>
 </template>
