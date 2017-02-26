@@ -11509,6 +11509,444 @@ define('aurelia-bootstrapper',['exports', 'aurelia-pal', 'aurelia-pal-browser', 
 
   run();
 });
+define('homefront/index',['require','exports','module','extend','./lib/expand','./lib/utils','./lib/flatten'],function (require, exports, module) {/* eslint-disable max-lines */
+
+'use strict';
+
+var extend      = require('extend');
+var expand      = require('./lib/expand');
+var Utils       = require('./lib/utils');
+var flatten     = require('./lib/flatten');
+var MODE_FLAT   = 'flat';
+var MODE_NESTED = 'nested';
+var MODES       = [MODE_FLAT, MODE_NESTED];
+
+/**
+ * Object wrapping class.
+ */
+var Homefront = function Homefront(data, mode) {
+  this.data = data || {};
+
+  this.setMode(mode);
+};
+
+var staticAccessors = { MODE_NESTED: {},MODE_FLAT: {} };
+
+/**
+ * Recursively merges given sources into data.
+ *
+ * @param {...Object} sources One or more, or array of, objects to merge into data (left to right).
+ *
+ * @return {Homefront}
+ */
+staticAccessors.MODE_NESTED.get = function () {
+  return MODE_NESTED;
+};
+
+/**
+ * @return {string}
+ */
+staticAccessors.MODE_FLAT.get = function () {
+  return MODE_FLAT;
+};
+
+Homefront.prototype.merge = function merge (sources) {
+    var this$1 = this;
+
+  sources     = Array.isArray(sources) ? sources : Array.prototype.slice.call(arguments); //eslint-disable-line prefer-rest-params
+  var mergeData = [];
+
+  sources.forEach(function (source) {
+    if (!source) {
+      return;
+    }
+
+    if (source instanceof Homefront) {
+      source = source.data;
+    }
+
+    mergeData.push(this$1.isModeFlat() ? flatten(source) : expand(source));
+  });
+
+  extend.apply(extend, [true, this.data].concat(mergeData));
+
+  return this;
+};
+
+/**
+ * Static version of merge, allowing you to merge objects together.
+ *
+ * @param {...Object} sources One or more, or array of, objects to merge (left to right).
+ *
+ * @return {{}}
+ */
+Homefront.merge = function merge (sources) {
+  sources = Array.isArray(sources) ? sources : Array.prototype.slice.call(arguments); //eslint-disable-line prefer-rest-params
+
+  return extend.apply(extend, [true].concat(sources));
+};
+
+/**
+ * Sets the mode.
+ *
+ * @param {String} [mode] Defaults to nested.
+ *
+ * @returns {Homefront} Fluent interface
+ *
+ * @throws {Error}
+ */
+Homefront.prototype.setMode = function setMode (mode) {
+  mode = mode || MODE_NESTED;
+
+  if (MODES.indexOf(mode) === -1) {
+    throw new Error(
+      ("Invalid mode supplied. Must be one of \"" + (MODES.join('" or "')) + "\"")
+    );
+  }
+
+  this.mode = mode;
+
+  return this;
+};
+
+/**
+ * Gets the mode.
+ *
+ * @return {String}
+ */
+Homefront.prototype.getMode = function getMode () {
+  return this.mode;
+};
+
+/**
+ * Expands flat object to nested object.
+ *
+ * @return {{}}
+ */
+Homefront.prototype.expand = function expand$1 () {
+  return this.isModeNested() ? this.data : expand(this.data);
+};
+
+/**
+ * Flattens nested object (dot separated keys).
+ *
+ * @return {{}}
+ */
+Homefront.prototype.flatten = function flatten$1 () {
+  return this.isModeFlat() ? this.data : flatten(this.data);
+};
+
+/**
+ * Returns whether or not mode is flat.
+ *
+ * @return {boolean}
+ */
+Homefront.prototype.isModeFlat = function isModeFlat () {
+  return this.mode === MODE_FLAT;
+};
+
+/**
+ * Returns whether or not mode is nested.
+ *
+ * @return {boolean}
+ */
+Homefront.prototype.isModeNested = function isModeNested () {
+  return this.mode === MODE_NESTED;
+};
+
+/**
+ * Method allowing you to set missing keys (backwards-applied defaults) nested.
+ *
+ * @param {String|Array} key
+ * @param {*}          defaults
+ *
+ * @returns {Homefront}
+ */
+Homefront.prototype.defaults = function defaults (key, defaults) {
+  return this.put(key, Homefront.merge(defaults, this.fetch(key, {})));
+};
+
+/**
+ * Convenience method. Calls .fetch(), and on null result calls .put() using provided toPut.
+ *
+ * @param {String|Array} key
+ * @param {*}          toPut
+ *
+ * @return {*}
+ */
+Homefront.prototype.fetchOrPut = function fetchOrPut (key, toPut) {
+  var wanted = this.fetch(key);
+
+  if (wanted === null) {
+    wanted = toPut;
+
+    this.put(key, toPut);
+  }
+
+  return wanted;
+};
+
+/**
+ * Fetches value of given key.
+ *
+ * @param {String|Array} key
+ * @param {*}          [defaultValue] Value to return if key was not found
+ *
+ * @returns {*}
+ */
+Homefront.prototype.fetch = function fetch (key, defaultValue) {
+  defaultValue = typeof defaultValue === 'undefined' ? null : defaultValue;
+
+  if (typeof this.data[key] !== 'undefined') {
+    return this.data[key];
+  }
+
+  if (this.isModeFlat()) {
+    return defaultValue;
+  }
+
+  var keys  = Utils.normalizeKey(key);
+  var lastKey = keys.pop();
+  var tmp   = this.data;
+
+  for (var i = 0; i < keys.length; i += 1) {
+    if (typeof tmp[keys[i]] === 'undefined' || tmp[keys[i]] === null) {
+      return defaultValue;
+    }
+
+    tmp = tmp[keys[i]];
+  }
+
+  return typeof tmp[lastKey] === 'undefined' ? defaultValue : tmp[lastKey];
+};
+
+/**
+ * Sets value for a key (creates object in path when not found).
+ *
+ * @param {String|Array} key  Array of key parts, or dot separated key.
+ * @param {*}          value
+ *
+ * @returns {Homefront}
+ */
+Homefront.prototype.put = function put (key, value) {
+  if (this.isModeFlat() || key.indexOf('.') === -1) {
+      this.data[key] = value;
+
+    return this;
+  }
+
+  var keys  = Utils.normalizeKey(key);
+  var lastKey = keys.pop();
+  var tmp   = this.data;
+
+  keys.forEach(function (val) {
+    if (typeof tmp[val] === 'undefined') {
+      tmp[val] = {};
+    }
+
+    tmp = tmp[val];
+  });
+
+  tmp[lastKey] = value;
+
+  return this;
+};
+
+/**
+ * Removes value by key.
+ *
+ * @param {String} key
+ *
+ * @returns {Homefront}
+ */
+Homefront.prototype.remove = function remove (key) {
+  if (this.isModeFlat() || key.indexOf('.') === -1) {
+    delete this.data[key];
+
+    return this;
+  }
+
+  var normalizedKey = Utils.normalizeKey(key);
+  var lastKey     = normalizedKey.pop();
+  var source      = this.fetch(normalizedKey);
+
+  if (typeof source === 'object' && source !== null) {
+    delete source[lastKey];
+  }
+
+  return this;
+};
+
+/**
+ * Search and return keys and values that match given string.
+ *
+ * @param {String|Number} phrase
+ *
+ * @returns {Array}
+ */
+Homefront.prototype.search = function search (phrase) {
+  var found = [];
+  var data= this.data;
+
+  if (this.isModeNested()) {
+    data = flatten(this.data);
+  }
+
+  Object.getOwnPropertyNames(data).forEach(function (key) {
+    var searchTarget = Array.isArray(data[key]) ? JSON.stringify(data[key]) : data[key];
+
+    if (searchTarget.search(phrase) > -1) {
+      found.push({key: key, value: data[key]});
+    }
+  });
+
+  return found;
+};
+
+Object.defineProperties( Homefront, staticAccessors );
+
+module.exports.flatten   = flatten;
+module.exports.expand    = expand;
+module.exports.Utils     = Utils;
+module.exports.Homefront = Homefront;
+
+});
+;define('homefront', ['homefront/index'], function (main) { return main; });
+
+define('aurelia-config',['exports', 'homefront', 'aurelia-dependency-injection', 'aurelia-framework'], function (exports, _homefront, _aureliaDependencyInjection, _aureliaFramework) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Configuration = exports.PluginManager = exports.Config = undefined;
+  exports.configure = configure;
+
+  var _dec, _class, _dec2, _class2;
+
+  
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  var Config = exports.Config = function (_Homefront) {
+    _inherits(Config, _Homefront);
+
+    function Config() {
+      
+
+      return _possibleConstructorReturn(this, _Homefront.apply(this, arguments));
+    }
+
+    return Config;
+  }(_homefront.Homefront);
+
+  var PluginManager = exports.PluginManager = (_dec = (0, _aureliaDependencyInjection.inject)(Config), _dec(_class = function () {
+    function PluginManager(config) {
+      
+
+      this.config = config;
+    }
+
+    PluginManager.prototype.normalized = function normalized(plugins, handler) {
+      plugins.forEach(function (pluginDefinition) {
+        pluginDefinition = pluginDefinition || {};
+
+        if (typeof pluginDefinition === 'string') {
+          pluginDefinition = { moduleId: pluginDefinition };
+        }
+
+        if (typeof pluginDefinition.config === 'undefined') {
+          pluginDefinition.config = {};
+        }
+
+        handler(pluginDefinition);
+      });
+    };
+
+    PluginManager.prototype.configure = function configure(use, plugins) {
+      for (var _len = arguments.length, appConfigs = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        appConfigs[_key - 2] = arguments[_key];
+      }
+
+      var _this2 = this;
+
+      var loadConfigs = [];
+      var pluginConfigs = [];
+
+      var loadConfig = function loadConfig(plugin) {
+        return use.aurelia.loader.loadModule(plugin.moduleId).then(function (module) {
+          return Config.merge(plugin.config, module.config);
+        });
+      };
+
+      this.normalized(plugins, function (plugin) {
+        loadConfigs.push(loadConfig(plugin));
+
+        pluginConfigs.push(plugin.config);
+
+        _this2.config.fetchOrPut(plugin.moduleId, {});
+
+        use.plugin(plugin.moduleId, plugin.rootConfig ? _this2.config.data : _this2.config.data[plugin.moduleId]);
+      });
+
+      return Promise.all(loadConfigs).then(function () {
+        return _this2.config.merge(pluginConfigs.concat(appConfigs));
+      });
+    };
+
+    return PluginManager;
+  }()) || _class);
+  var Configuration = exports.Configuration = (_dec2 = (0, _aureliaDependencyInjection.resolver)(), _dec2(_class2 = function () {
+    function Configuration(namespace) {
+      
+
+      this._namespace = namespace;
+    }
+
+    Configuration.prototype.get = function get(container) {
+      return container.get(Config).fetch(this._namespace);
+    };
+
+    Configuration.of = function of(namespace) {
+      return new Configuration(namespace);
+    };
+
+    return Configuration;
+  }()) || _class2);
+  function configure(use, callback) {
+    var pluginManager = use.container.get(PluginManager);
+
+    return callback(function (plugins) {
+      for (var _len2 = arguments.length, appConfigs = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        appConfigs[_key2 - 1] = arguments[_key2];
+      }
+
+      return pluginManager.configure.apply(pluginManager, [use, plugins].concat(appConfigs));
+    });
+  }
+});
 define('aurelia-dependency-injection',['exports', 'aurelia-metadata', 'aurelia-pal'], function (exports, _aureliaMetadata, _aureliaPal) {
   'use strict';
 
@@ -24000,6 +24438,95 @@ define('aurelia-templating-binding',['exports', 'aurelia-logging', 'aurelia-bind
     config.container.registerAlias(_aureliaTemplating.BindingLanguage, TemplatingBindingLanguage);
   }
 });
+define('extend',['require','exports','module'],function (require, exports, module) {'use strict';
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var toStr = Object.prototype.toString;
+
+var isArray = function isArray(arr) {
+	if (typeof Array.isArray === 'function') {
+		return Array.isArray(arr);
+	}
+
+	return toStr.call(arr) === '[object Array]';
+};
+
+var isPlainObject = function isPlainObject(obj) {
+	if (!obj || toStr.call(obj) !== '[object Object]') {
+		return false;
+	}
+
+	var hasOwnConstructor = hasOwn.call(obj, 'constructor');
+	var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
+	// Not own constructor property must be Object
+	if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
+		return false;
+	}
+
+	// Own properties are enumerated firstly, so to speed up,
+	// if last one is own, then all properties are own.
+	var key;
+	for (key in obj) {/**/}
+
+	return typeof key === 'undefined' || hasOwn.call(obj, key);
+};
+
+module.exports = function extend() {
+	var options, name, src, copy, copyIsArray, clone,
+		target = arguments[0],
+		i = 1,
+		length = arguments.length,
+		deep = false;
+
+	// Handle a deep copy situation
+	if (typeof target === 'boolean') {
+		deep = target;
+		target = arguments[1] || {};
+		// skip the boolean and the target
+		i = 2;
+	} else if ((typeof target !== 'object' && typeof target !== 'function') || target == null) {
+		target = {};
+	}
+
+	for (; i < length; ++i) {
+		options = arguments[i];
+		// Only deal with non-null/undefined values
+		if (options != null) {
+			// Extend the base object
+			for (name in options) {
+				src = target[name];
+				copy = options[name];
+
+				// Prevent never-ending loop
+				if (target !== copy) {
+					// Recurse if we're merging plain objects or arrays
+					if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
+						if (copyIsArray) {
+							copyIsArray = false;
+							clone = src && isArray(src) ? src : [];
+						} else {
+							clone = src && isPlainObject(src) ? src : {};
+						}
+
+						// Never move original objects, clone them
+						target[name] = extend(deep, clone, copy);
+
+					// Don't bring in undefined values
+					} else if (typeof copy !== 'undefined') {
+						target[name] = copy;
+					}
+				}
+			}
+		}
+	}
+
+	// Return the modified object
+	return target;
+};
+
+
+});
+
 define('text',{});
 /*!
  * jQuery JavaScript Library v3.1.1
@@ -47281,4 +47808,4 @@ define('aurelia-testing/component-tester',['exports', 'aurelia-templating', 'aur
     return ComponentTester;
   }();
 });
-function _aureliaConfigureModuleLoader(){requirejs.config({"baseUrl":"src/","paths":{"aurelia-binding":"..\\node_modules\\aurelia-binding\\dist\\amd\\aurelia-binding","aurelia-bootstrapper":"..\\node_modules\\aurelia-bootstrapper\\dist\\amd\\aurelia-bootstrapper","aurelia-framework":"..\\node_modules\\aurelia-framework\\dist\\amd\\aurelia-framework","aurelia-dependency-injection":"..\\node_modules\\aurelia-dependency-injection\\dist\\amd\\aurelia-dependency-injection","aurelia-history":"..\\node_modules\\aurelia-history\\dist\\amd\\aurelia-history","aurelia-event-aggregator":"..\\node_modules\\aurelia-event-aggregator\\dist\\amd\\aurelia-event-aggregator","aurelia-history-browser":"..\\node_modules\\aurelia-history-browser\\dist\\amd\\aurelia-history-browser","aurelia-loader-default":"..\\node_modules\\aurelia-loader-default\\dist\\amd\\aurelia-loader-default","aurelia-loader":"..\\node_modules\\aurelia-loader\\dist\\amd\\aurelia-loader","aurelia-logging":"..\\node_modules\\aurelia-logging\\dist\\amd\\aurelia-logging","aurelia-logging-console":"..\\node_modules\\aurelia-logging-console\\dist\\amd\\aurelia-logging-console","aurelia-metadata":"..\\node_modules\\aurelia-metadata\\dist\\amd\\aurelia-metadata","aurelia-pal-browser":"..\\node_modules\\aurelia-pal-browser\\dist\\amd\\aurelia-pal-browser","aurelia-pal":"..\\node_modules\\aurelia-pal\\dist\\amd\\aurelia-pal","aurelia-polyfills":"..\\node_modules\\aurelia-polyfills\\dist\\amd\\aurelia-polyfills","aurelia-path":"..\\node_modules\\aurelia-path\\dist\\amd\\aurelia-path","aurelia-route-recognizer":"..\\node_modules\\aurelia-route-recognizer\\dist\\amd\\aurelia-route-recognizer","aurelia-router":"..\\node_modules\\aurelia-router\\dist\\amd\\aurelia-router","aurelia-task-queue":"..\\node_modules\\aurelia-task-queue\\dist\\amd\\aurelia-task-queue","aurelia-templating":"..\\node_modules\\aurelia-templating\\dist\\amd\\aurelia-templating","aurelia-templating-binding":"..\\node_modules\\aurelia-templating-binding\\dist\\amd\\aurelia-templating-binding","text":"..\\node_modules\\text\\text","jquery":"..\\node_modules\\jquery\\dist\\jquery","app-bundle":"../scripts/app-bundle"},"packages":[{"name":"foundation-sites","location":"../node_modules/foundation-sites/dist/js","main":"foundation"},{"name":"aurelia-templating-resources","location":"../node_modules/aurelia-templating-resources/dist/amd","main":"aurelia-templating-resources"},{"name":"aurelia-templating-router","location":"../node_modules/aurelia-templating-router/dist/amd","main":"aurelia-templating-router"},{"name":"aurelia-testing","location":"../node_modules/aurelia-testing/dist/amd","main":"aurelia-testing"}],"stubModules":["text"],"shim":{},"bundles":{"app-bundle":["app","environment","main","resources/index","../styles/app"]}})}
+function _aureliaConfigureModuleLoader(){requirejs.config({"baseUrl":"src/","paths":{"aurelia-binding":"..\\node_modules\\aurelia-binding\\dist\\amd\\aurelia-binding","aurelia-bootstrapper":"..\\node_modules\\aurelia-bootstrapper\\dist\\amd\\aurelia-bootstrapper","aurelia-config":"..\\node_modules\\aurelia-config\\dist\\amd\\aurelia-config","aurelia-event-aggregator":"..\\node_modules\\aurelia-event-aggregator\\dist\\amd\\aurelia-event-aggregator","aurelia-framework":"..\\node_modules\\aurelia-framework\\dist\\amd\\aurelia-framework","aurelia-history":"..\\node_modules\\aurelia-history\\dist\\amd\\aurelia-history","aurelia-history-browser":"..\\node_modules\\aurelia-history-browser\\dist\\amd\\aurelia-history-browser","aurelia-dependency-injection":"..\\node_modules\\aurelia-dependency-injection\\dist\\amd\\aurelia-dependency-injection","aurelia-loader":"..\\node_modules\\aurelia-loader\\dist\\amd\\aurelia-loader","aurelia-loader-default":"..\\node_modules\\aurelia-loader-default\\dist\\amd\\aurelia-loader-default","aurelia-logging":"..\\node_modules\\aurelia-logging\\dist\\amd\\aurelia-logging","aurelia-logging-console":"..\\node_modules\\aurelia-logging-console\\dist\\amd\\aurelia-logging-console","aurelia-pal-browser":"..\\node_modules\\aurelia-pal-browser\\dist\\amd\\aurelia-pal-browser","aurelia-path":"..\\node_modules\\aurelia-path\\dist\\amd\\aurelia-path","aurelia-metadata":"..\\node_modules\\aurelia-metadata\\dist\\amd\\aurelia-metadata","aurelia-pal":"..\\node_modules\\aurelia-pal\\dist\\amd\\aurelia-pal","aurelia-route-recognizer":"..\\node_modules\\aurelia-route-recognizer\\dist\\amd\\aurelia-route-recognizer","aurelia-polyfills":"..\\node_modules\\aurelia-polyfills\\dist\\amd\\aurelia-polyfills","aurelia-templating-binding":"..\\node_modules\\aurelia-templating-binding\\dist\\amd\\aurelia-templating-binding","aurelia-router":"..\\node_modules\\aurelia-router\\dist\\amd\\aurelia-router","aurelia-task-queue":"..\\node_modules\\aurelia-task-queue\\dist\\amd\\aurelia-task-queue","aurelia-templating":"..\\node_modules\\aurelia-templating\\dist\\amd\\aurelia-templating","extend":"..\\node_modules\\extend\\index","text":"..\\node_modules\\text\\text","jquery":"..\\node_modules\\jquery\\dist\\jquery","app-bundle":"../scripts/app-bundle"},"packages":[{"name":"homefront","location":"../node_modules/homefront/dist","main":"index"},{"name":"foundation-sites","location":"../node_modules/foundation-sites/dist/js","main":"foundation"},{"name":"aurelia-templating-resources","location":"../node_modules/aurelia-templating-resources/dist/amd","main":"aurelia-templating-resources"},{"name":"aurelia-templating-router","location":"../node_modules/aurelia-templating-router/dist/amd","main":"aurelia-templating-router"},{"name":"aurelia-testing","location":"../node_modules/aurelia-testing/dist/amd","main":"aurelia-testing"}],"stubModules":["text"],"shim":{},"bundles":{"app-bundle":["app","environment","main","components/index","config/router","resources/index","components/nav-bar/nav-bar","components/site-footer/site-footer","components/views/home/home","homefront/lib/expand","homefront/lib/utils","homefront/lib/flatten","../styles/app"]}})}

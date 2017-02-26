@@ -212,9 +212,12 @@
     <Content Include="src\components\site-footer\site-footer.js" />
     <Content Include="src\components\nav-bar\nav-bar.html" />
     <Content Include="src\components\nav-bar\nav-bar.js" />
+    <Content Include="src\config\router.js" />
     <Content Include="src\environment.js" />
     <Content Include="src\main.js" />
     <Content Include="src\resources\index.js" />
+    <Content Include="src\components\views\home\home.html" />
+    <Content Include="src\components\views\home\home.js" />
     <Content Include="styles\app.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -242,7 +245,6 @@
     <Folder Include="src\resources\binding-behaviors\" />
     <Folder Include="src\resources\elements\" />
     <Folder Include="src\resources\value-converters\" />
-    <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

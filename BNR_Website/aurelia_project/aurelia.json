@@ -91,7 +91,13 @@
         ],
         "dependencies": [
           "aurelia-binding",
-          "aurelia-bootstrapper",
+          "aurelia-bootstrapper",          
+          {
+              "name": "homefront",
+              "path": "../node_modules/homefront/dist",
+              "main": "index"
+          },
+          "aurelia-config",
           "aurelia-dependency-injection",
           "aurelia-event-aggregator",
           "aurelia-framework",
@@ -111,6 +117,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "extend",
           "text",
           "jquery",
           {
