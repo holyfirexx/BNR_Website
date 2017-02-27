@@ -21,7 +21,7 @@ function configureRouter(config) {
 function setRoot(aurelia) {
     if (aurelia.setupAureliaDone) {
         aurelia.container.get(Router).configure(configureRouter);
-        aurelia.setRoot('app');
+        aurelia.setRoot('app/app');
     }
 }
 
