@@ -1,0 +1,30 @@
+
+ DATE: 02/25/2017 19:05:21 
+ THREAD: [10] 
+ LEVEL: ERROR 
+ USER ID:  
+ CLASS: MvcApplication 
+ METHOD: Session_Start 
+ LOCATION: BNR_Website.MvcApplication.Session_Start(C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website\Global.asax.cs:36) 
+ MESSAGE: hi 
+ EXCEPTION:  
+
+ DATE: 02/25/2017 19:52:48 
+ THREAD: [12] 
+ LEVEL: ERROR 
+ USER ID:  
+ CLASS: MvcApplication 
+ METHOD: Session_Start 
+ LOCATION: BNR_Website.MvcApplication.Session_Start(C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website\Global.asax.cs:36) 
+ MESSAGE: hi 
+ EXCEPTION:  
+
+ DATE: 02/25/2017 19:57:05 
+ THREAD: [9] 
+ LEVEL: ERROR 
+ USER ID:  
+ CLASS: MvcApplication 
+ METHOD: Session_Start 
+ LOCATION: BNR_Website.MvcApplication.Session_Start(C:\Users\Travis Higgs\documents\visual studio 2015\Projects\BNR_Website\BNR_Website\Global.asax.cs:36) 
+ MESSAGE: hi 
+ EXCEPTION:  

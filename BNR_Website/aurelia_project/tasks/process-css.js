@@ -9,8 +9,8 @@ export default function processCSS() {
          .pipe(sourcemaps.init())
          .pipe(sass({
                  includePaths: [
-                     './node_modules/foundation-sites/scss'
-                     //'./node_modules/font-awesome/scss',
+                     './node_modules/foundation-sites/scss',
+                     './node_modules/font-awesome/scss'
                      //'./node_modules/motion-ui/src'
                  ]
              }
