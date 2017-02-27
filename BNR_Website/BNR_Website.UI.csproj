@@ -190,6 +190,7 @@
     <Content Include="aurelia_project\tasks\run.js" />
     <Content Include="aurelia_project\tasks\transpile.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="ApplicationInsights.config">
@@ -216,6 +217,10 @@
     <Content Include="src\components\views\about\about.js" />
     <Content Include="src\components\views\events\events.html" />
     <Content Include="src\components\views\events\events.js" />
+    <Content Include="src\components\views\leader-boards\leader-boards.html" />
+    <Content Include="src\components\views\leader-boards\leader-boards.js" />
+    <Content Include="src\components\views\server-info\server-info.html" />
+    <Content Include="src\components\views\server-info\server-info.js" />
     <Content Include="src\config\router.js" />
     <Content Include="src\environment.js" />
     <Content Include="src\main.js" />
@@ -269,6 +274,13 @@
       <Project>{9de6fb14-79e5-4480-b055-ddc86152b531}</Project>
       <Name>BNR_Website.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
