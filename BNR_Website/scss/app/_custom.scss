@@ -76,3 +76,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', e
     background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
+.background-highlight{
+    padding:1em 2.5em;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#640d0d+0,0a0a0a+25,0a0a0a+75,640d0d+100&0.6+0,0.6+100 */
+    background: -moz-linear-gradient(left,  rgba(100,13,13,0.6) 0%, rgba(10,10,10,0.6) 25%, rgba(10,10,10,0.6) 75%, rgba(100,13,13,0.6) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(100,13,13,0.6) 0%,rgba(10,10,10,0.6) 25%,rgba(10,10,10,0.6) 75%,rgba(100,13,13,0.6) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(100,13,13,0.6) 0%,rgba(10,10,10,0.6) 25%,rgba(10,10,10,0.6) 75%,rgba(100,13,13,0.6) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99640d0d', endColorstr='#99640d0d',GradientType=1 ); /* IE6-9 */
+}
