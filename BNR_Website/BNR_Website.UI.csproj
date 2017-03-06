@@ -227,7 +227,7 @@
     <Content Include="src\resources\index.js" />
     <Content Include="src\components\views\home\home.html" />
     <Content Include="src\components\views\home\home.js" />
-    <Content Include="styles\app.css" />
+    <Content Include="src\components\views\home\styles\app.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

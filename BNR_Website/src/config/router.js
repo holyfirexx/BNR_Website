@@ -5,7 +5,7 @@ routes: [
         name: 'home',
         moduleId: 'components/views/home/home',
         nav: true,
-        title: 'Home',
+        title: 'BNR',
         settings: {
             roles: [],
             font: "fa fa-home"
