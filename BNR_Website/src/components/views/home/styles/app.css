@@ -437,11 +437,11 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: #0a0a0a;
+  background: #fefefe;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5;
-  color: #fefefe;
+  color: #0a0a0a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -1429,7 +1429,7 @@ cite {
 
 abbr {
   border-bottom: 1px dotted #0a0a0a;
-  color: #fefefe;
+  color: #0a0a0a;
   cursor: help; }
 
 figure {
@@ -1875,7 +1875,7 @@ legend {
     margin: 0;
     margin-left: -0.1875rem;
     padding: 0 0.1875rem;
-    background: #0a0a0a; }
+    background: #fefefe; }
 
 select {
   height: 2.4375rem;
@@ -1973,7 +1973,7 @@ select {
   border: 1px solid #e6e6e6;
   border-bottom: 0;
   background-color: #fefefe;
-  color: #fefefe; }
+  color: #0a0a0a; }
   :last-child > .accordion-content:last-child {
     border-bottom: 1px solid #e6e6e6; }
 
@@ -2432,7 +2432,7 @@ select {
   visibility: hidden;
   border: 1px solid #cacaca;
   border-radius: 0;
-  background-color: #0a0a0a;
+  background-color: #fefefe;
   font-size: 1rem; }
   .dropdown-pane.is-open {
     visibility: visible; }
@@ -3399,10 +3399,10 @@ table {
     font-weight: bold; }
   table thead {
     background: #f8f8f8;
-    color: #fefefe; }
+    color: #0a0a0a; }
   table tfoot {
     background: #f1f1f1;
-    color: #fefefe; }
+    color: #0a0a0a; }
   table thead tr,
   table tfoot tr {
     background: transparent; }
@@ -3507,7 +3507,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   border: 1px solid #e6e6e6;
   border-top: 0;
   background: #fefefe;
-  color: #fefefe;
+  color: #0a0a0a;
   transition: all 0.5s ease; }
 
 .tabs-content.vertical {
@@ -3631,7 +3631,7 @@ a.thumbnail {
     transform: translateY(-50%); }
 
 .top-bar {
-  padding: 20px; }
+  padding: 0.5rem; }
   .top-bar::before, .top-bar::after {
     display: table;
     content: ' '; }
@@ -3639,7 +3639,7 @@ a.thumbnail {
     clear: both; }
   .top-bar,
   .top-bar ul {
-    background-color: #0a0a0a; }
+    background-color: #e6e6e6; }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -6109,82 +6109,153 @@ a.thumbnail {
   overflow: visible;
   clip: auto; }
 
-.body {
-  color: white; }
+.c-form {
+  padding: 1rem; }
+  .c-form__row {
+    padding: 1rem; }
 
-.header > h1 {
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-  color: white; }
+.c-cta--alert {
+  color: #cc4b37; }
+  .c-cta--alert:hover, .c-cta--alert:focus {
+    color: #cc4b37; }
+  .c-cta--alert:active, .c-cta--alert:active:hover, .c-cta--alert:active:focus {
+    transition-timing-function: ease-in;
+    transition-duration: 150ms; }
 
-.header {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+20,2989d8+50,1e5799+80&0+0,0.8+15,1+19,1+81,0.8+85,0+100;Blue+Two+Sided+Transparent */
-  background: -moz-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, #1e5799 19%, #1e5799 20%, #2989d8 50%, #1e5799 80%, #1e5799 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, #1e5799 19%, #1e5799 20%, #2989d8 50%, #1e5799 80%, #1e5799 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, #1e5799 19%, #1e5799 20%, #2989d8 50%, #1e5799 80%, #1e5799 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#001e5799',GradientType=0 );
-  /* IE6-9 */
-  width: 100%;
-  height: 15em; }
+.background {
+  background-color: rgba(173, 216, 250, 0.1);
+  border-radius: 15px;
+  border-style: none;
+  border-color: none;
+  border-width: 0; }
 
-.navigation > ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background: #45484d;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #45484d 0%, #000000 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
-  /* IE6-9 */ }
+.profile-action-block {
+  border-left: thin solid #cacaca;
+  border-right: thin solid #cacaca;
+  border-top: thick solid #cacaca;
+  border-bottom: thick solid #cacaca;
+  padding: 1em; }
 
-.navigation > ul > li {
-  display: inline; }
+.profile-breadcrumb {
+  padding-top: 6px;
+  padding-right: 4px;
+  padding-bottom: 6px;
+  padding-left: 4px; }
 
-.navigation > ul > li > a {
-  display: block;
+.profile-bread-icon {
+  margin-left: 20px;
+  font-size: 280%;
   color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-weight: bold; }
+  font-weight: 600; }
 
-.navigation > ul > li > a:hover {
-  border-bottom-color: white;
-  border-bottom-style: solid; }
+.button.profile-breadcrumb {
+  margin: 0; }
 
-.active {
-  border-bottom-color: white;
-  border-bottom-style: solid; }
+.button.complete.profile-breadcrumb {
+  opacity: 1 !important;
+  background-color: #C4DDED;
+  /*&:hover{background-color: #95b9d8;}*/ }
 
-.active:hover {
-  border-bottom-color: none;
-  border-bottom-style: none; }
+.button.skipped.profile-breadcrumb {
+  opacity: 1 !important;
+  background-color: #C4DDED;
+  /*&:hover{background-color: #95b9d8;}*/ }
 
-.nav-bar-left {
+.button.profile-breadcrumb.active {
+  padding-top: 6px;
+  padding-right: 4px;
+  padding-bottom: 6px;
+  padding-left: 4px;
+  background-color: #1779ba;
+  cursor: default; }
+
+.button.disabled.profile-breadcrumb {
+  opacity: 1 !important;
+  background-color: #C4DDED; }
+
+.page-margins {
+  margin-left: 1em;
+  margin-right: 1em; }
+
+.title-img-text-wrap {
+  float: left;
+  margin-right: .5em; }
+
+.page-header {
+  font-size: 1.75rem; }
+
+.section-header {
+  font-size: 1.675rem; }
+
+.label-font {
+  font-size: 1.125em; }
+
+.fineprint {
+  font-size: 0.675em; }
+
+.small-top-margin {
+  margin-top: 1em; }
+
+.medium-top-margin {
+  margin-top: 2em; }
+
+.large-top-margin {
+  margin-top: 3em; }
+
+.not-active {
+  pointer-events: none;
+  cursor: default; }
+
+.not-allowed {
+  cursor: not-allowed;
+  text-decoration: none; }
+
+.align-image-middle {
+  vertical-align: middle; }
+
+.complete-color {
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); }
+
+.warning-color {
+  color: orange;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); }
+
+.fix-line-height {
+  line-height: 2.5em; }
+
+.completedInput {
+  box-shadow: none;
+  border-right: none;
+  padding: 0 .5em; }
+
+.completedIcon {
+  border-left: none; }
+
+.verticalAlign {
+  vertical-align: sub; }
+
+.disabledText {
+  color: #e6e6e6;
+  cursor: wait; }
+
+.action-bar-bg {
+  background-color: #e6e6e6; }
+
+input[type='checkbox'].checkbox-left {
   float: left; }
 
-.nav-bar-right {
-  float: right; }
+label span.checkbox-text-right {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 18px;
+  font-weight: bolder; }
 
-.footer {
-  background: #45484d;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #45484d 0%, #000000 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
-  /* IE6-9 */ }
+.header {
+  background-color: black;
+  width: 100%;
+  height: 15em;
+  color: darkred; }
 
 html,
 body {
@@ -6345,7 +6416,7 @@ ai-dialog > ai-dialog-header {
   display: block;
   padding: 16px;
   border-bottom: 1px solid #e5e5e5;
-  background-color: #0a0a0a; }
+  background-color: #e6e6e6; }
 
 ai-dialog > ai-dialog-header > button {
   float: right;

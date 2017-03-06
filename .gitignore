@@ -258,3 +258,4 @@ paket-files/
 node_modules
 .idea
 .DS_STORE
+/BNR_Website/Logs
