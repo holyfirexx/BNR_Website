@@ -35,7 +35,20 @@ namespace BNR_Website.Controllers
         {
             return View(_unitOfWork.UserRepository.GetAll());
         }
+    // GET: User
+        [HttpPost]
+        public ActionResult GetUsers()
+        {
 
+          var test = _unitOfWork.UserRepository.GetAll();
+          User[] userList = new User[test.Count()];
+
+          for (int i = 0; i < test.Count();i++)
+          {
+            userList[i] = test.ElementAt(i);
+          }
+          return Json(userList);
+        }
         // GET: User/Details/5
         public ActionResult Details(int? id)
         {
