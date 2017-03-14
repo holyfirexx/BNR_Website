@@ -5,7 +5,7 @@ namespace BNR_Website.DAL.Repositories
 {
     public class BNRContext : DbContext
     {
-        public BNRContext() : base("bnrwebsite")
+        public BNRContext() : base("db_a19aa3_bnrweb")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }

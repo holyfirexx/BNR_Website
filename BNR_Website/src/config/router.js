@@ -53,6 +53,17 @@ routes: [
             roles: [],
             font: "fa fa-info-circle"
         }
+    },
+    {
+        route: '/admins',
+        name: 'admins',
+        moduleId: 'components/views/admins/admins',
+        nav: true,
+        title: 'Admins',
+        settings: {
+            roles: [],
+            font: "fa fa-calendar"
+        }
     }],
 fallbackRoute: 'home'
 };
