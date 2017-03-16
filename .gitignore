@@ -11,6 +11,7 @@
 *.userprefs
 
 # Build results
+BNR_Website/Web.config
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -259,5 +260,8 @@ node_modules
 .idea
 .DS_STORE
 /BNR_Website/Logs
-BNR_Website/Web.config
-BNR_Website/Web.config
+/BNR_Website/scripts/vendor-bundle.js
+/BNR_Website/scripts/app-bundle.js
+/BNR_Website/scripts/app-bundle.map.js
+
+
