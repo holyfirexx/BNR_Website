@@ -260,3 +260,4 @@ node_modules
 .DS_STORE
 /BNR_Website/Logs
 BNR_Website/Web.config
+BNR_Website/Web.config
