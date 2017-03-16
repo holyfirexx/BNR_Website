@@ -262,6 +262,6 @@ node_modules
 /BNR_Website/Logs
 /BNR_Website/scripts/vendor-bundle.js
 /BNR_Website/scripts/app-bundle.js
-/BNR_Website/scripts/app-bundle.map.js
+/BNR_Website/scripts/app-bundle.js.map
 
 
