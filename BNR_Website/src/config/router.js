@@ -64,6 +64,17 @@ routes: [
             roles: [],
             font: "fa fa-calendar"
         }
+    },
+    {
+        route: '/create-user',
+        name: 'create-user',
+        moduleId: 'components/views/create-user/create-user',
+        nav: true,
+        title: 'Create User',
+        settings: {
+            roles: [],
+            font: "fa fa-calendar"
+        }
     }],
 fallbackRoute: 'home'
 };

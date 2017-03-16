@@ -1,0 +1,40 @@
+﻿<template>
+    <div class="row">
+        <div class="small-6 column">
+            <form>
+                <label>
+                    Username: <span class="red">*</span>
+                    <input type="text" placeholder="ExampleUsername" required value.bind="user.username" />
+                </label>
+                <label>
+                    Password: <span class="red">*</span>
+                    <input type="password" placeholder="********" required value.bind="user.password" />
+                </label>
+                <label>
+                    Confirm Password: <span class="red">*</span>
+                    <input type="password" placeholder="********" required />
+                </label>
+                <label>
+                    Email: <span class="red">*</span>
+                    <input type="email" placeholder="Example@email.com" required value.bind="user.email" />
+                </label>
+                <label>
+                    Games:
+                    <input type="text" placeholder="Tom Clancy's The Division" value.bind="user.games" />
+                </label>
+                <label>
+                    Description:
+                    <input type="text" placeholder="I like cheese!!!" value.bind="user.description" />
+                </label>
+
+                <span class="help-text">  <span class="red">*</span> Required Fields</span>
+            </form>
+            <button click.delegate="createUser()" class="button secondary">
+                Submit
+            </button>
+            ${vm.success}
+        </div>
+        
+
+    </div>
+</template>

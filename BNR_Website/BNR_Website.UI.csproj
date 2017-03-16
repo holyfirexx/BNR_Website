@@ -195,6 +195,7 @@
     <Content Include="src\components\views\admins\admins.html" />
     <Content Include="src\components\views\server-info\server-info.html" />
     <Content Include="src\components\views\home\home.html" />
+    <Content Include="src\models\user.js" />
     <Content Include="styles\app.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

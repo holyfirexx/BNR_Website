@@ -74,8 +74,8 @@ namespace BNR_Website.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Name,Credentials")] User user)
+        //[Bind(Include = "id,Name,Credentials")]
+        public ActionResult Create( User user)
         {
             if (ModelState.IsValid)
             {
