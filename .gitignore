@@ -259,3 +259,4 @@ node_modules
 .idea
 .DS_STORE
 /BNR_Website/Logs
+BNR_Website/Web.config
