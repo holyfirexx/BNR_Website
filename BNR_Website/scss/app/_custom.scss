@@ -17,6 +17,12 @@ label{
     color:red;
 }
 
+.min-height{
+    @media (min-width: 600px) {
+        min-height:20em;
+    }
+}
+
 .header > h1{
       text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
