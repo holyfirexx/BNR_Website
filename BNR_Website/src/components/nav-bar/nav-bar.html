@@ -1,14 +1,18 @@
 ﻿<template bindable="router">
-    <div class="navigation">
+  <div class="navigation">
+    <div class="row">
+      <div class="small-12 column navigation">
         <ul class="">
-            <li repeat.for="row of router.navigation" class="nav-bar-left ${row.isActive ? 'active' : ''}">
-                <a href.bind="row.href" i18n.bind="row.settings.i18n">
-                    ${row.title}
-                </a>
-            </li>
-            <li class="nav-bar-right"><a>Profile</a></li>
-            <li class="nav-bar-right"><a>Login</a></li>
+          <li repeat.for="row of router.navigation" class="nav-bar-left  navigation-li ${row.isActive ? 'active' : ''}">
+            <a class="navigation-a" href.bind="row.href" i18n.bind="row.settings.i18n">
+              ${row.title}
+            </a>
+          </li>
+          <li class="nav-bar-right navigation-li"><a class="navigation-a">Profile</a></li>
+          <li class="nav-bar-right navigation-li"><a class="navigation-a">Login</a></li>
         </ul>
+      </div>
     </div>
+  </div>    
     <loading-indicator loading.bind="router.isNavigating" || api.isRequesting></loading-indicator>
 </template>

@@ -58,7 +58,7 @@ routes: [
         route: '/admins',
         name: 'admins',
         moduleId: 'components/views/admins/admins',
-        nav: true,
+        nav: false,
         title: 'Admins',
         settings: {
             roles: [],
@@ -69,7 +69,7 @@ routes: [
         route: '/create-user',
         name: 'create-user',
         moduleId: 'components/views/create-user/create-user',
-        nav: true,
+        nav: false,
         title: 'Create User',
         settings: {
             roles: [],

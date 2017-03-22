@@ -33,7 +33,7 @@ label{
     height:15em;
 }
 
-.navigation > ul{
+.navigation{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -44,10 +44,16 @@ label{
     background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
-.navigation > ul > li{
-    display:inline;
+.navigation-li{
+  display: inline;
+  color: white;
 }
-.navigation > ul > li > a{
+.navigation-li:hover{
+  border-bottom-color: white;
+  border-bottom-style: solid;
+  color: white;
+}
+.navigation-a{
     display: block;
     color: white;
     text-align: center;
@@ -55,17 +61,17 @@ label{
     text-decoration: none;
     font-weight:bold;
 }
-.navigation > ul > li > a:hover{
-    border-bottom-color:white;
-    border-bottom-style:solid;
+.navigation-a:hover, .navigation-a:active, .navigation-a:focus {
+  color: white;
 }
-.active{
-    border-bottom-color:white;
-    border-bottom-style:solid;
+.active {
+  border-bottom-color: white;
+  border-bottom-style: solid;
 }
-.active:hover{
-    border-bottom-color:none;
-    border-bottom-style:none;
+.active:hover {
+  color: white;
+  border-bottom-color: white;
+  border-bottom-style: solid;
 }
 .nav-bar-left{
     float: left;
