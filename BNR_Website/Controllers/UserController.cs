@@ -1,46 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BNR_Website.DAL.Models;
-using BNR_Website.DAL.Repositories;
-using BNR_Website.DAL.Repositories.Interfaces;
+using BNR_Website.BusinessLogic;
 
 namespace BNR_Website.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        private IUnitOfWork _unitOfWork = null;
+        private IUserService _userService = null;
 
+
+
+        #region Constructors
         public UserController()
         {
-            if(_unitOfWork == null)
-            {
-                _unitOfWork = new UnitOfWork(new BNRContext());
-            }
-        }
-        public UserController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
+            _userService = new UserService();
         }
 
+        #endregion
 
 
-        // GET: User
-        public ActionResult Index()
-        {
-            return View(_unitOfWork.UserRepository.GetAll());
-        }
-    // GET: User
+        //TODO do routeconfig mapping
+
+        //public ActionResult Index()
+        //{
+        //    return View(_userService.GetAllUsers());
+        //}
+
+
         [HttpPost]
         public ActionResult GetUsers()
         {
-
-          var test = _unitOfWork.UserRepository.GetAll();
+          var test = _userService.GetAllUsers();
           User[] userList = new User[test.Count()];
 
           for (int i = 0; i < test.Count();i++)
@@ -49,52 +40,39 @@ namespace BNR_Website.Controllers
           }
           return Json(userList);
         }
-        // GET: User/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = _unitOfWork.UserRepository.Get(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
 
-        // GET: User/Create
+
+
+
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         //[Bind(Include = "id,Name,Credentials")]
-        public ActionResult Create( User user)
+        public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.UserRepository.Insert(user);
-                _unitOfWork.Save();
+                _userService.CreateUser(user);
                 return RedirectToAction("Index");
             }
-
             return View(user);
         }
 
-        // GET: User/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = _unitOfWork.UserRepository.Get(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+
+            User user = _userService.GetUserById((int)id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -102,18 +80,34 @@ namespace BNR_Website.Controllers
             return View(user);
         }
 
-        // POST: User/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Name,Credentials")] User user)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.UserRepository.Update(user);
-                _unitOfWork.Save();
+                _userService.UpdateUser(user);
                 return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+
+
+
+
+        public ActionResult Details(int? id)
+        {
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+
+            User user = _userService.GetUserById((int)id);
+            if (user == null)
+            {
+                return HttpNotFound();
             }
             return View(user);
         }
@@ -121,11 +115,12 @@ namespace BNR_Website.Controllers
         // GET: User/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = _unitOfWork.UserRepository.Get(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+
+            User user = _userService.GetUserById((int)id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -138,19 +133,9 @@ namespace BNR_Website.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = _unitOfWork.UserRepository.Get(id);
-            _unitOfWork.UserRepository.Delete(user);
-            _unitOfWork.Save();
+            _userService.RemoveUser(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _unitOfWork.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
