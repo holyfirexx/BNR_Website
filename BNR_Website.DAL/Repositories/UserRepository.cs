@@ -23,5 +23,19 @@ namespace BNR_Website.DAL.Repositories
         }
 
 
+        public IEnumerable<User> GetAllUsersByRole(string role)
+        {
+            try
+            { 
+                return BNRContext.Users.Where(x => x.Role == role).ToList();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                throw;
+            }
+        }
+
+
     }
 }

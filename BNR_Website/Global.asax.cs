@@ -43,24 +43,29 @@ namespace BNR_Website
 
         protected void Session_End(Object sender, EventArgs e)
         {
-            Session.Clear();
-            Session.Abandon();
         }
 
         protected void Application_Error()
         {
-            HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
+            try
+            {
+                HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
+                Exception lastError = lastErrorWrapper;
+                if (lastErrorWrapper.InnerException != null) lastError = lastErrorWrapper.InnerException;
 
-            Exception lastError = lastErrorWrapper;
-            if (lastErrorWrapper.InnerException != null) lastError = lastErrorWrapper.InnerException;
+                string lastErrorTypeName = lastError.GetType().ToString();
+                string lastErrorMessage = lastError.Message;
+                string lastErrorStackTrace = lastError.StackTrace;
 
-            string lastErrorTypeName = lastError.GetType().ToString();
-            string lastErrorMessage = lastError.Message;
-            string lastErrorStackTrace = lastError.StackTrace;
+                log.Error("Unhandled application exception. Error Type Name: " + lastErrorTypeName + Environment.NewLine +
+                    "Error Message: " + lastErrorMessage + Environment.NewLine +
+                    "Error Stack Trace: " + lastErrorStackTrace);
+            }
+            catch
+            {
+                log.Error("Application_Error Exception Unable to be logged");
+            }
 
-            log.Error("Unhandled application exception. Error Type Name: " + lastErrorTypeName + Environment.NewLine +
-                "Error Message: " + lastErrorMessage + Environment.NewLine +
-                "Error Stack Trace: " + lastErrorStackTrace);
         }
 
         private static void ConfigureRegistrations()
