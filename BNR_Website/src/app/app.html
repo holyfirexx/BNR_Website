@@ -1,19 +1,21 @@
 <template>
-  <div class="background">
-    <div class="row header">
-    </div>
 
+  <div id="wrapper">
+
+    
     <nav-bar router.bind="router"></nav-bar>
 
-    <div class="background">
-      <router-view></router-view>
+
+    <div id="content">
+        <div class="content-container">
+            <router-view></router-view>
+        </div>
     </div>
 
+    <div id="footer">
+        <site-footer></site-footer>
+    </div>
 
-    <site-footer></site-footer>
   </div>
-    
-
-
 
 </template>
