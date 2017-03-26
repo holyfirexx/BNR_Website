@@ -10,7 +10,8 @@ export default function processCSS() {
          .pipe(sass({
                  includePaths: [
                      './node_modules/foundation-sites/scss',
-                     './node_modules/font-awesome/scss'
+                     './node_modules/font-awesome/scss',
+                     './node_modules/slick-carousel/slick'
                      //'./node_modules/motion-ui/src'
                  ]
              }

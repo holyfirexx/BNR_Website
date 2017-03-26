@@ -44,8 +44,7 @@
 @include foundation-float-classes;
 
 //@include motion-ui-transitions;
-//@include motion-ui-animations;
-
+//@include motion-ui-animations;]
 @import "font-awesome";
 
 // APP
@@ -53,9 +52,6 @@
 @import 'app/custom';
 @import "app/notifications";
 @import "app/dialogs";
+@import "app/slick";
+@import "app/slick-theme";
 
-/* rswank- trying to get the main content pane to have y scroll with a fixed nav bar without yscroll on the nav*/ 
-/*.top-bar{
-    position: fixed;
-    width: 100%;
-}*/

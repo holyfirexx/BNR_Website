@@ -16,8 +16,8 @@
     "foundation-sites": "*",
     "jquery": "*",
     "requirejs": "^2.3.2",
+    "slick-carousel": "^1.6.0",
     "text": "github:requirejs/text#latest"
-    
   },
   "peerDependencies": {},
   "devDependencies": {
