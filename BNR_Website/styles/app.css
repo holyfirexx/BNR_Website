@@ -6186,24 +6186,35 @@ footer {
 	:: Display Size Scaling
 	-------------------------------------------------- 
 */
-@media only screen and (min-width: 75em) {
-  .row {
-    max-width: 79.875em; }
-  .row .row {
-    margin-left: -2.4375rem;
-    margin-right: -2.4375rem; }
-  .column, .columns, .columns {
-    padding-left: 2.4375rem;
-    padding-right: 2.4375rem; }
-  .row.small-margins {
-    max-width: 76.875em; }
-  .row .row.small-margins, .row.small-margins .row {
-    margin-left: -.9375rem;
-    margin-right: -.9375rem; }
-  .row.small-margins .column, .row.small-margins .columns, .row.small-margins .columns {
-    padding-left: .9375rem;
-    padding-right: .9375rem; } }
+/*@media only screen and (min-width:75em) {
+    .row {
+        max-width: 79.875em;
+    }
 
+        .row .row {
+            margin-left: -2.4375rem;
+            margin-right: -2.4375rem;
+        }
+
+    .column, .columns {
+        padding-left: 2.4375rem;
+        padding-right: 2.4375rem;
+    }
+
+    .row.small-margins {
+        max-width: 76.875em;
+    }
+
+        .row .row.small-margins, .row.small-margins .row {
+            margin-left: -.9375rem;
+            margin-right: -.9375rem;
+        }
+
+        .row.small-margins .column, .row.small-margins .columns {
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+        }
+}*/
 /*	--------------------------------------------------
 	:: MORE USELESS CSS THAT TRAVIS WROTE... BETTER CALL MARTIN
 	-------------------------------------------------- 
@@ -6291,6 +6302,13 @@ label {
   height: 13px;
   width: 13px;
   padding: 0; }
+
+/*	--------------------------------------------------
+	:: Slick Settings
+	-------------------------------------------------- 
+*/
+.slideShow {
+  margin: 2em; }
 
 html,
 body {

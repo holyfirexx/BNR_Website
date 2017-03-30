@@ -178,8 +178,20 @@
     <Compile Include="BusinessLogic\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="images\Background.png" />
+    <Content Include="images\Banner.png" />
+    <Content Include="images\favicon.png" />
+    <Content Include="images\image1.jpg" />
+    <Content Include="images\image2.jpg" />
+    <Content Include="images\image3.jpg" />
+    <Content Include="images\image4.jpg" />
+    <Content Include="images\image5.jpg" />
+    <Content Include="images\image6.jpg" />
+    <Content Include="images\image7.jpg" />
+    <Content Include="images\image8.jpg" />
+    <Content Include="styles\ajax-loader.gif" />
+    <Content Include="styles\fonts\slick.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="ApplicationInsights.config">
@@ -246,6 +258,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="styles\fonts\slick.eot" />
+    <Content Include="styles\fonts\slick.ttf" />
+    <Content Include="styles\fonts\slick.woff" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <Content Include="Views\Shared\PageNotFound.cshtml" />
   </ItemGroup>
